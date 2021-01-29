@@ -1,0 +1,8 @@
+graph workspace "Flights"
+ edge table "Tables.Routes"
+  source column "airportCodeOrigin"
+  target column "airportCodeDestination"
+  key column "routeId"
+ vertex table "Tables.Airports"
+  key column "airportCode"
+ ;

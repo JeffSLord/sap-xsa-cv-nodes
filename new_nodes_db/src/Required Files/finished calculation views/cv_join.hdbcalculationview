@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="cv_join" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="cv_join"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="Tables.Routes">
+    <resourceUri>Tables.Routes</resourceUri>
+  </DataSource>
+  <DataSource id="Tables.Airports">
+    <resourceUri>Tables.Airports</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Routes_OriginAirport">
+    <viewAttributes>
+      <viewAttribute id="routeId"/>
+      <viewAttribute id="airportCodeOrigin"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Tables.Routes"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Airport_Details">
+    <viewAttributes>
+      <viewAttribute id="airportCode"/>
+      <viewAttribute id="airportName"/>
+      <viewAttribute id="city"/>
+      <viewAttribute id="country"/>
+      <viewAttribute id="location"/>
+      <viewAttribute id="altitude"/>
+      <viewAttribute id="offsetUTC"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Tables.Airports"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="CN_1" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="routeId"/>
+      <viewAttribute id="airportCodeOrigin"/>
+      <viewAttribute id="airportName"/>
+      <viewAttribute id="city"/>
+      <viewAttribute id="country"/>
+      <viewAttribute id="location"/>
+      <viewAttribute id="altitude"/>
+      <viewAttribute id="offsetUTC"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Routes_OriginAirport">
+      <mapping xsi:type="Calculation:AttributeMapping" target="routeId" source="routeId"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="airportCodeOrigin" source="airportCodeOrigin"/>
+    </input>
+    <input node="Airport_Details">
+      <mapping xsi:type="Calculation:AttributeMapping" target="airportName" source="airportName"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="city" source="city"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="country" source="country"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="location" source="location"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="altitude" source="altitude"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="offsetUTC" source="offsetUTC"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="airportCodeOrigin" source="airportCode"/>
+    </input>
+    <joinAttribute name="airportCodeOrigin"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Join_1">
+  <attributes>
+    <attribute id="routeId" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="routeId"/>
+      <keyMapping columnObjectName="Join_1" columnName="routeId"/>
+    </attribute>
+    <attribute id="airportCodeOrigin" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="airportCodeOrigin"/>
+      <keyMapping columnObjectName="Join_1" columnName="airportCodeOrigin"/>
+    </attribute>
+    <attribute id="airportName" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="airportName"/>
+      <keyMapping columnObjectName="Join_1" columnName="airportName"/>
+    </attribute>
+    <attribute id="city" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="city"/>
+      <keyMapping columnObjectName="Join_1" columnName="city"/>
+    </attribute>
+    <attribute id="country" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="country"/>
+      <keyMapping columnObjectName="Join_1" columnName="country"/>
+    </attribute>
+    <attribute id="location" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="location"/>
+      <keyMapping columnObjectName="Join_1" columnName="location"/>
+    </attribute>
+    <attribute id="altitude" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="altitude"/>
+      <keyMapping columnObjectName="Join_1" columnName="altitude"/>
+    </attribute>
+    <attribute id="offsetUTC" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="offsetUTC"/>
+      <keyMapping columnObjectName="Join_1" columnName="offsetUTC"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="221.11302679000914" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Routes_OriginAirport" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="376.9999988079071"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Airport_Details" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="302.00000000000006" y="376.9999988079071"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="221.11302679000914" y="217"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Routes_OriginAirport" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="186"/>
+    </shape>
+    <shape modelObjectName="Airport_Details" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="150"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

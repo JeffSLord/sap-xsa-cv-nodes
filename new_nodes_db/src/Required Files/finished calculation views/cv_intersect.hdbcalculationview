@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="cv_intersect" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="cv_intersect"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="Tables.Routes">
+    <resourceUri>Tables.Routes</resourceUri>
+  </DataSource>
+  <DataSource id="Route_End_LAX$$$$Tables.Routes$$">
+    <resourceUri>Tables.Routes</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Route_Start_JFK" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="routeId"/>
+      <viewAttribute id="airlineCode"/>
+      <viewAttribute id="airlineName"/>
+      <viewAttribute id="allianceName"/>
+      <viewAttribute id="airportCodeOrigin"/>
+      <viewAttribute id="airportCodeDestination"/>
+      <viewAttribute id="distance"/>
+      <viewAttribute id="duration"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Tables.Routes"/>
+    <filter>&quot;airportCodeOrigin&quot;='JFK'</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Route_End_LAX" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="routeId"/>
+      <viewAttribute id="airlineCode"/>
+      <viewAttribute id="airlineName"/>
+      <viewAttribute id="allianceName"/>
+      <viewAttribute id="airportCodeOrigin"/>
+      <viewAttribute id="airportCodeDestination"/>
+      <viewAttribute id="distance"/>
+      <viewAttribute id="duration"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Route_End_LAX$$$$Tables.Routes$$"/>
+    <filter>&quot;airportCodeDestination&quot;='LAX'</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:IntersectView" id="Intersect_1">
+    <viewAttributes>
+      <viewAttribute id="routeId"/>
+      <viewAttribute id="airlineCode"/>
+      <viewAttribute id="airlineName"/>
+      <viewAttribute id="allianceName"/>
+      <viewAttribute id="airportCodeOrigin"/>
+      <viewAttribute id="airportCodeDestination"/>
+      <viewAttribute id="distance"/>
+      <viewAttribute id="duration"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Route_Start_JFK">
+      <mapping xsi:type="Calculation:AttributeMapping" target="routeId" source="routeId"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="airlineCode" source="airlineCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="airlineName" source="airlineName"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="allianceName" source="allianceName"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="airportCodeOrigin" source="airportCodeOrigin"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="airportCodeDestination" source="airportCodeDestination"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="distance" source="distance"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="duration" source="duration"/>
+    </input>
+    <input node="Route_End_LAX">
+      <mapping xsi:type="Calculation:AttributeMapping" target="routeId" source="routeId"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="airlineCode" source="airlineCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="airlineName" source="airlineName"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="allianceName" source="allianceName"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="airportCodeOrigin" source="airportCodeOrigin"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="airportCodeDestination" source="airportCodeDestination"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="distance" source="distance"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="duration" source="duration"/>
+    </input>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Intersect_1">
+  <attributes>
+    <attribute id="routeId" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="routeId"/>
+      <keyMapping columnObjectName="Intersect_1" columnName="routeId"/>
+    </attribute>
+    <attribute id="airlineCode" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="airlineCode"/>
+      <keyMapping columnObjectName="Intersect_1" columnName="airlineCode"/>
+    </attribute>
+    <attribute id="airlineName" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="airlineName"/>
+      <keyMapping columnObjectName="Intersect_1" columnName="airlineName"/>
+    </attribute>
+    <attribute id="allianceName" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="allianceName"/>
+      <keyMapping columnObjectName="Intersect_1" columnName="allianceName"/>
+    </attribute>
+    <attribute id="airportCodeOrigin" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="airportCodeOrigin"/>
+      <keyMapping columnObjectName="Intersect_1" columnName="airportCodeOrigin"/>
+    </attribute>
+    <attribute id="airportCodeDestination" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="airportCodeDestination"/>
+      <keyMapping columnObjectName="Intersect_1" columnName="airportCodeDestination"/>
+    </attribute>
+    <attribute id="distance" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="distance"/>
+      <keyMapping columnObjectName="Intersect_1" columnName="distance"/>
+    </attribute>
+    <attribute id="duration" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="duration"/>
+      <keyMapping columnObjectName="Intersect_1" columnName="duration"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="221.11302679000914" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Route_Start_JFK" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92.00000000000001" y="356.9999988079071"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Route_End_LAX" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="302.00000000000006" y="356.9999988079071"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Intersect_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="221.11302679000914" y="217"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

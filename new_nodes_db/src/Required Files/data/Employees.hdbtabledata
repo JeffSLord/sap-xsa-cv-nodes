@@ -1,0 +1,23 @@
+{
+	"format_version": 1,
+	"imports":
+	[
+        {
+            "target_table": "Tables.Employees",
+            "source_data": {
+                "data_type": "CSV",
+                "file_name": "Employees.csv",
+                "has_header": true,
+				"type_config" : { 
+					"delimiter" : ",", 
+					"do_quote" : true
+				} 
+            },
+            "import_settings": {
+                "import_columns": [
+					"business_unit","first_name","last_name"
+				]
+            }
+        }
+	]
+}

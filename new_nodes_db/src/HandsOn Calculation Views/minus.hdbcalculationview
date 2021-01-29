@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="minus" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="minus"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="Tables.Airports">
+    <resourceUri>Tables.Airports</resourceUri>
+  </DataSource>
+  <DataSource id="Projection_2$$$$Tables.Airports$$">
+    <resourceUri>Tables.Airports</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <viewAttributes>
+      <viewAttribute id="airportCode"/>
+      <viewAttribute id="airportName"/>
+      <viewAttribute id="city"/>
+      <viewAttribute id="country"/>
+      <viewAttribute id="location"/>
+      <viewAttribute id="altitude"/>
+      <viewAttribute id="offsetUTC"/>
+      <viewAttribute id="passengers"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Tables.Airports"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="airportCode"/>
+      <viewAttribute id="airportName"/>
+      <viewAttribute id="city"/>
+      <viewAttribute id="country"/>
+      <viewAttribute id="location"/>
+      <viewAttribute id="altitude"/>
+      <viewAttribute id="offsetUTC"/>
+      <viewAttribute id="passengers"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Projection_2$$$$Tables.Airports$$"/>
+    <filter>&quot;country&quot; = 'United States'</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:MinusView" id="Minus_1">
+    <viewAttributes>
+      <viewAttribute id="airportCode"/>
+      <viewAttribute id="airportName"/>
+      <viewAttribute id="city"/>
+      <viewAttribute id="country"/>
+      <viewAttribute id="location"/>
+      <viewAttribute id="altitude"/>
+      <viewAttribute id="offsetUTC"/>
+      <viewAttribute id="passengers"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Projection_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="airportCode" source="airportCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="airportName" source="airportName"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="city" source="city"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="country" source="country"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="location" source="location"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="altitude" source="altitude"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="offsetUTC" source="offsetUTC"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="passengers" source="passengers"/>
+    </input>
+    <input node="Projection_2">
+      <mapping xsi:type="Calculation:AttributeMapping" target="airportCode" source="airportCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="airportName" source="airportName"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="city" source="city"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="country" source="country"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="location" source="location"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="altitude" source="altitude"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="offsetUTC" source="offsetUTC"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="passengers" source="passengers"/>
+    </input>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Minus_1">
+  <attributes>
+    <attribute id="airportCode" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="airportCode"/>
+      <keyMapping columnObjectName="Minus_1" columnName="airportCode"/>
+    </attribute>
+    <attribute id="airportName" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="airportName"/>
+      <keyMapping columnObjectName="Minus_1" columnName="airportName"/>
+    </attribute>
+    <attribute id="city" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="city"/>
+      <keyMapping columnObjectName="Minus_1" columnName="city"/>
+    </attribute>
+    <attribute id="country" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="country"/>
+      <keyMapping columnObjectName="Minus_1" columnName="country"/>
+    </attribute>
+    <attribute id="location" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="location"/>
+      <keyMapping columnObjectName="Minus_1" columnName="location"/>
+    </attribute>
+    <attribute id="altitude" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="altitude"/>
+      <keyMapping columnObjectName="Minus_1" columnName="altitude"/>
+    </attribute>
+    <attribute id="offsetUTC" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="offsetUTC"/>
+      <keyMapping columnObjectName="Minus_1" columnName="offsetUTC"/>
+    </attribute>
+    <attribute id="passengers" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="passengers"/>
+      <keyMapping columnObjectName="Minus_1" columnName="passengers"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="221" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="356"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="302" y="356"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Minus_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="221" y="217"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

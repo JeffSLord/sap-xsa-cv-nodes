@@ -1,0 +1,48 @@
+context Tables {
+    entity Airports {
+        key airportCode : String(3) not null;
+            airportName : String(100);
+            city        : String(100);
+            country     : String(100);
+            location    : hana.ST_GEOMETRY(4326);
+            altitude    : Integer;
+            offsetUTC   : Integer;
+            passengers  : Integer;
+    };
+
+    entity Routes {
+        key routeId                : Integer generated always as identity;
+            airlineCode            : String(2) not null;
+            airlineName            : String(100);
+            allianceName           : String(100);
+            airportCodeOrigin      : String(3) not null;
+            airportCodeDestination : String(3) not null;
+            distance               : Integer;
+            duration               : Integer;
+    };
+
+    table type TT_TripRouting {
+        segment                : Integer64;
+        airportCodeOrigin      : String(3);
+        airportCodeDestination : String(3);
+        airlineName            : String(100);
+        distance               : Integer;
+        duration               : Integer;
+    };
+
+    /*@@layout{"layoutInfo":{"x":-571,"y":-138.5}}*/
+    entity Employees {
+        key business_unit : Integer    not null;
+        key first_name    : String(32) not null;
+        key last_name     : String(32) not null;
+    };
+    
+    entity Students {
+        key ID     : Integer not null;
+            NAME   : String(100);
+            SITE   : String(100);
+            GENDER : String(100);
+            AGE    : String(100);
+            SCORE  : Double;
+    };
+};
